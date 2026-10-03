@@ -6,13 +6,12 @@ const Token& Parser::current() const {
     return tokens[pos];
 }
 
-// Move to the next token (never past the END_OF_INPUT token).
+
 void Parser::advance() {
     if (pos + 1 < tokens.size()) pos++;
 }
 
-// Consume the current token if it has the expected type; otherwise
-// stop with a syntax error describing what was expected.
+
 void Parser::expect(TokenType type, const std::string& what) {
     if (current().type == type) {
         advance();
@@ -37,14 +36,13 @@ void Parser::program() {
     expect(TokenType::LBRACE, "'{'");
     declares();
     assign();
-    // The grammar has no ';' after <assign>, but Sample Program 1 has one.
-    // Delete this "if" to follow the grammar strictly.
+ 
     if (current().type == TokenType::SEMICOLON) advance();
     expect(TokenType::RBRACE, "'}'");
     expect(TokenType::END_OF_INPUT, "end of input");
 }
 
-// At least one declaration, then as many more as there are.
+
 void Parser::declares() {
     do {
         expect(TokenType::KEYWORD, "a declaration starting with 'float'");
