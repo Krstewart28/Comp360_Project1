@@ -3,19 +3,17 @@
 #include <vector>
 #include "token.h"
 
-// Thrown when the parser finds the first syntax error.
+
 struct SyntaxError {
     std::string message;
 };
 
-// Recursive-descent parser for the LearnCompiler grammar.
-// One member function per grammar rule.
+
 class Parser {
 public:
     explicit Parser(const std::vector<Token>& tokens);
 
-    // Returns true if the program is valid. Otherwise returns false and
-    // fills errorMessage with a description of the first syntax error.
+    
     bool parse(std::string& errorMessage);
 
 private:
